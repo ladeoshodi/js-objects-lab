@@ -86,7 +86,7 @@ Solve Exercise 6 here:
 */
 
 game.gyms.forEach((gym) => {
-  if (gym.difficulty < 3) {
+  if (gym.difficulty <= 3) {
     gym.completed = true;
   }
 });
@@ -194,7 +194,7 @@ Solve Exercise 12 here:
 */
 
 game.gyms.forEach((gym) => {
-  if (gym.difficulty < 6) {
+  if (gym.difficulty <= 6) {
     gym.completed = true;
   }
 });
@@ -265,7 +265,7 @@ Solve Exercise 15 here:
 */
 
 game.gyms.forEach((gym) => {
-  if (gym.difficulty < 8) {
+  if (gym.difficulty <= 8) {
     gym.completed = true;
   }
 });
@@ -398,3 +398,41 @@ console.log(game.catchPokemon("wartORTle"));
 console.log("\n");
 
 console.log("Game data: \n", game);
+
+/*
+Exercise 21
+Dynamically construct an object with the existing `pokemon` data sorted by the different pokemon types. The object will have this structure:
+
+{
+  grass: [
+    { number: 1, name: 'Bulbasaur', type: 'grass', hp: 45, starter: true },
+    { number: 2, name: 'Ivysaur', type: 'grass', hp: 60, starter: false },
+    { number: 3, name: 'Venusaur', type: 'grass', hp: 80, starter: false },
+    * more grass type Pokemon objects...
+  ],
+  fire: [
+    { number: 4, name: 'Charmander', type: 'fire', hp: 39, starter: true },
+    * more fire type Pokemon objects...
+  ],
+  water: [
+    * water type Pokemon objects...
+  ],
+  * etc... until there is an array for every Pokemon type!
+}
+
+Log the object when it's constructed.
+
+Solve Exercise 21 here:
+*/
+
+const sortedPokemon = pokemon.reduce((obj, pokemon) => {
+  if (pokemon.type in obj) {
+    obj[pokemon.type].push(pokemon);
+  } else {
+    obj[pokemon.type] = [pokemon];
+  }
+  return obj;
+}, {});
+
+console.log("sortedPokemon: ");
+console.dir(sortedPokemon, { maxArrayLength: null });
